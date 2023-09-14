@@ -1,0 +1,14 @@
+//Largest Element in the Array
+
+#include <bits/stdc++.h> 
+int largestElement(vector<int> &a, int n)
+{
+    // Write your code here.
+    int max=a[0];
+    for(int i=1;i<n;i++)
+    {
+        if(a[i]>max)
+        max=a[i];
+    }
+    return max;
+}
