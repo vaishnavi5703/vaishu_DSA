@@ -1,0 +1,70 @@
+//Find Second Smallest and Second Largest Element in an array
+//Problem Statement: Given an array, find the second smallest and second largest element in the array. Print ‘-1’ in the event that either of them doesn’t exist.
+
+
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    // brute force approch  
+    // TC=O(nlogn) sc=O(1)
+    sort(a.begin(),a.end());
+    vector<int>v;
+    v.push_back(a[n-2]);
+    v.push_back(a[1]);
+    return v;
+
+
+    //better approch --->1st find large no.then go for second large
+    // tc=O(n)
+    int i,l=a[0],sl=INT_MIN,s=a[0],ss=INT_MAX;
+    for(i=1;i<n;i++)
+    {
+        if(l<a[i])
+        l=a[i];
+        if(s>a[i])
+        s=a[i];
+    }
+    for(i=0;i<n;i++)
+    {
+        if(l>a[i]&&sl<a[i])
+        sl=a[i];
+        if(s<a[i]&&ss>a[i])
+        ss=a[i];
+    }
+    vector<int>v;
+    v.push_back(sl);
+    v.push_back(ss);
+    return v;
+
+
+
+    //optimal approch   
+    //when we check present element is greater than large value
+    //then we need to store second_large as large value
+    // and large value as present element
+    //tc=O(n);
+    int i,l=a[0],sl=INT_MIN,s=a[0],ss=INT_MAX;
+    for(i=1;i<n;i++)
+    {
+        if(a[i]>=l)
+        {
+            sl=l;
+            l=a[i];
+        }
+        else if (a[i]>sl)
+        {
+            sl=a[i];
+        }
+        if(a[i]<=s)
+        {
+            ss=s;
+            s=a[i];
+        }
+        else if (a[i]<ss)
+        {
+            ss=a[i];
+        }
+    }
+    vector<int>v;
+    v.push_back(sl);
+    v.push_back(ss);
+    return v;
+}
