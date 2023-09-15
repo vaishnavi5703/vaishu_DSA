@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+                int cnt=1;
+                for(int j=i;cnt<n;cnt++, j++)
+                {
+                    if(nums[j%n]<=nums[(j+1)%n])
+                    continue;
+                    break;
+                }
+                if(cnt==n)
+                return true;
+        }
+        return false;
+    }
+};
