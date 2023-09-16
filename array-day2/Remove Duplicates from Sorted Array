@@ -1,0 +1,18 @@
+// Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once.
+//The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+
+//tc- O(n)-optimal solution
+
+    int removeDuplicates(vector<int>& a) {
+        int i=0,j=0,n=a.size();
+        for(j=0;j<n-1;j++)
+        {
+            if(a[j]!=a[j+1])
+            {
+                a[i]=a[j];
+                i++;
+            }
+        }
+        a[i]=a[n-1];
+        return i+1;
+        }
