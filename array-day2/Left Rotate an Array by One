@@ -1,0 +1,12 @@
+//Move the first element to the last and rest all the elements to the left.
+//tc-O(n)
+vector<int> rotateArray(vector<int>& a, int n) {
+    // Write your code here.
+    int i,no=a[0],j=1;
+    for(i=0;i<n-1;i++)
+    {
+        a[i]=a[j++];
+    }
+    a[n-1]=no;
+    return a;
+}
