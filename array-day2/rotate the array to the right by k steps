@@ -1,0 +1,22 @@
+ //Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+    void rotate(vector<int>& a, int k) {
+        //solution 1
+        vector<int>v;
+        int n=a.size(),i;
+        k=k%n;
+        for(i=n-k;i<n;i++)
+        v.push_back(a[i]);
+         for(i=n-k;i<n;i++)
+        a.pop_back();
+        a.insert(a.begin(),v.begin(),v.end());
+
+
+        //solution 2:  space complexity:O(1)
+        int n=a.size();
+        k=k%n;
+        reverse(a.begin(),a.begin()+n-k);
+        reverse(a.begin()+n-k,a.end());
+        reverse(a.begin(),a.end());
+
+
+    }
