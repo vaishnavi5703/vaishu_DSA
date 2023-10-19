@@ -1,0 +1,22 @@
+Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* start,*slow,*fast;
+        start=fast=slow=head;
+        while(fast&&fast->next)
+        {
+            fast=fast->next->next;
+            slow=slow->next;
+            if(slow==fast)
+            {
+             while(start!=slow)
+            {
+            start=start->next;
+            slow=slow->next;
+            }
+            return start;
+            }
+        }
+       return NULL;
+    }
