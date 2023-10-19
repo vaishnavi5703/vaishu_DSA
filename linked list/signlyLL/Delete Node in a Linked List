@@ -1,0 +1,21 @@
+you are given the node to be deleted node. You will not be given access to the first node of head.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        //head pointer is not given...only node which we want to delete is given
+        //copy node->next->data to node->data...and delete node next node
+        ListNode*temp=node->next;
+        node->val=temp->val;
+        node->next=temp->next;
+        delete(temp);
+
+    }
+};
