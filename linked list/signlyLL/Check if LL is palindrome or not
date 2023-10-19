@@ -1,0 +1,40 @@
+approch:
+1)find middle of linked list->using slow and fast pointer;
+2)revsere list from middle to end
+3)compare nodes of first half part with second half part->if matching return true; else false;
+
+
+
+class Solution {
+public:
+    ListNode* reverse(ListNode*slow)
+    {
+        ListNode*prev=NULL,*curr=slow,*temp;
+        while(curr)
+        {
+            temp=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=temp;
+        }
+        return prev;
+    }
+    bool isPalindrome(ListNode* head) {
+        ListNode*slow,*fast;
+        slow=fast=head;
+        while(fast&&fast->next)
+        {
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        slow=reverse(slow);
+        while(slow)
+        {
+            if(slow->val!=head->val)
+            return false;
+            slow=slow->next;
+            head=head->next;
+        }
+        return true;
+    }
+};
