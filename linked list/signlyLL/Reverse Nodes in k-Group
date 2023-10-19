@@ -1,0 +1,57 @@
+i/p= 1-2-3-4-5-6 and k=2
+o/p= 2-1-4-3-6-5
+
+i/p= 1-2-3-4-5-6 and k=4
+o/p=4-3-2-1-5-6
+
+solution:
+1st case hum karenge baki recurssion dekh lega:
+1)reverse k nodes
+2)head->next=reccursion ans;
+3)return prev;
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+ int getlength(ListNode* head)
+ {
+     int cnt=0;
+     while(head)
+     {
+         cnt++;
+         head=head->next;
+     }
+     return cnt;
+ }
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head==NULL)
+        return NULL;
+        int l=getlength(head);
+        if(l<k)
+        return head;
+        ListNode*temp,*prev=NULL,*curr=head;
+        int cnt=0;
+        while(cnt<k)
+        {
+            temp=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=temp;
+            cnt++;
+        }
+        if(temp)
+        {
+            head->next=reverseKGroup(temp,k);
+        }
+        return prev;
+    }
+};
