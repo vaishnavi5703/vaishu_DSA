@@ -1,0 +1,44 @@
+Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+//brute force
+Node *findMiddle(Node *head) {
+    // Write your code here
+    Node* temp=head;
+    int cnt=0,ans;
+    while(temp)
+    {
+        cnt++;
+        temp=temp->next;
+    }
+    if(cnt%2==0)
+    {
+        ans=(cnt/2);
+    }
+    else
+    ans=cnt/2;
+    temp=head;
+    while(ans)
+    {
+        temp=temp->next;
+        ans--;
+    }
+    return temp;
+}
+
+
+
+
+
+// using slow and fast pointer
+ ListNode* middleNode(ListNode* head) {
+        ListNode* slow,*fast;
+        slow=head;
+        fast=head;
+        while(fast&&fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
