@@ -1,0 +1,45 @@
+i/p:  6-5-2-3-5-7-2
+o/p:  6-2-2-5-3-5-7
+
+make two list:one for even other for odd...and join them
+
+
+Node* lastN(Node* temp)
+{
+    while(temp->next)
+    temp=temp->next;
+    return temp;
+}
+ void insert(Node* &head,int data)
+ {
+     Node*temp=head;
+     Node*newnode=new Node(data);
+     if(!head)
+     {
+        head=newnode;
+     }
+     else
+     {
+         Node*last=lastN(temp);
+         last->next=newnode;
+     }
+}
+
+Node* segregateEvenOdd(Node* head)
+{
+    // Write your code here
+    Node*even,*odd,*temp;
+    even=odd=NULL;
+    temp=head;
+    while(temp)
+    {
+        if(temp->data %2==0)
+        insert(even,temp->data);
+        else
+        insert(odd,temp->data);
+        temp=temp->next;
+    }
+    Node* first=lastN(even);
+    first->next=odd;
+    return even;
+}
