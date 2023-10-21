@@ -1,0 +1,71 @@
+Calculate the length of both the lists, say len1 and len2
+Get the absolute difference of the lengths, diff = |len1 – len2|
+Now traverse the long list from the first node to ‘diff’ nodes so that from there onwards, both the lists have an equal number of nodes
+Then traverse both the lists in parallel and check whether a common node is reached (Note that getting a common node is done by comparing the address of the nodes, not the data)
+If yes, return that node
+If no, return null
+Time Complexity
+O(N), where ‘N’ is the maximum length of the linked list. 
+
+ 
+
+Since we have to traverse only the longer linked list, therefore, the time complexity is O(N).
+
+Space Complexity
+O(1)
+
+ 
+
+Since we only use constant space.
+
+
+
+Node* findIntersection(Node *firstHead, Node *secondHead)
+{
+    //Write your code here
+    Node* first=firstHead,*second=secondHead;
+    int f=0,s=0;
+    while(first||second)
+    {
+        if(first)
+        {
+            f++;
+            first=first->next;
+        }
+        if(second)
+        {
+            s++;
+            second=second->next;
+        }
+    }
+    first=firstHead;
+    second=secondHead;
+    int d;
+    if(f>s)
+    {
+        d=f-s;
+        while(d)
+        {
+            first=first->next;
+            d--;
+        }
+        
+    }
+    else
+    {
+        d=s-f;
+        while(d)
+        {
+            second=second->next;
+            d--;
+        }
+    }
+    while(first&&second)
+    {
+        if(first==second)
+        return first;
+        first=first->next;
+        second=second->next;
+    }
+    return NULL;
+}
