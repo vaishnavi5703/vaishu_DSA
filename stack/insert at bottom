@@ -1,0 +1,21 @@
+class Solution{
+public:
+void fun(stack<int>&s,int x)
+{
+     if(s.empty())
+        {
+            s.push(x);
+            return;
+            
+        }
+        int d=s.top();
+        s.pop();
+        fun(s,x);
+        s.push(d);
+        
+}
+    stack<int> insertAtBottom(stack<int> st,int x){
+       fun(st,x);
+       return st;
+    }
+};
