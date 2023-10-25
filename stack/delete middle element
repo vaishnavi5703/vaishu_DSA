@@ -1,0 +1,14 @@
+void deleteMid(stack<int>&s, int n)
+    {
+        // code here.. 
+        if((n%2==0&&s.size()==n/2)||(n%2==1&&s.size()==n/2+1))
+        {
+           s.pop();
+           return;
+        }
+        int d=s.top();
+        s.pop();
+        deleteMid(s,n);
+        s.push(d);
+        
+    }
