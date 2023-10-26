@@ -1,0 +1,28 @@
+Given a stack, the task is to sort it such that the top of the stack has the greatest element\
+
+
+void push_sort(stack<int>&s,int d)
+{
+    if(s.empty()){
+        s.push(d);
+        return;
+    }
+    if(s.top()<=d)
+   {
+        s.push(d);
+        return;
+   }
+    int x=s.top();
+    s.pop();
+    push_sort(s,d);
+    s.push(x);
+}
+void sortstack(stack<int>&s)
+{
+    if(s.empty())
+    return;
+    int d=s.top();
+    s.pop();
+    sortstack(s);
+    push_sort(s,d);
+}
